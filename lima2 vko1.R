@@ -45,6 +45,14 @@ summary(loppu)
 #3
 data3 <- alr4::Heights
 
+regressio3 <- lm(data3$dheight ~ data3$mheight)
+summary(regressio3)
+
+?confint
+confint(regressio3, level = 0.99)
+
+?predict.lm
+predict.lm()
 
 #4.1
 regressio2 <- lm(log(data$fertility) ~ log(data$ppgdp))
