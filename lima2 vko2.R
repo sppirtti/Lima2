@@ -14,12 +14,12 @@ reg2 <- lm(data$fertility ~ data$pctUrban)
 summary(reg1)           
 summary(reg2)
 
-#P-Arvo erittäin pieni, hylätään nollahypoteesi
+#P-Arvo erittÃ¤in pieni, hylÃ¤tÃ¤Ã¤n nollahypoteesi
 #.3
 reg3 <- lm(data$fertility ~ log(data$ppgdp) + data$pctUrban)
 avPlots(reg3)
 summary(reg3)
-#Logaritmi ppgdp on vielä hyödyllinen, mutta pctUrban kulmakerroin lähellä nollaa joka poikkeaa paljon aikaisemmasta
+#Logaritmi ppgdp on vielÃ¤ hyÃ¶dyllinen, mutta pctUrban kulmakerroin lÃ¤hellÃ¤ nollaa joka poikkeaa paljon aikaisemmasta
 
 reg4 <- lm(log(data$ppgdp) ~data$pctUrban)
 reg5 <- lm (data $fertility ~data$pctUrban)
@@ -38,7 +38,7 @@ scatterplotMatrix(~data2$BSAAM + data2$OPBPC + data2$OPRC + data2$OPSLAKE)
 regvesi <- lm (data2$BSAAM ~ data2$OPBPC + data2$OPRC + data2$OPSLAKE)
 cor(data2)
 
-#Kaikki korreloivat keskenään ja korrelaatiot ovat positiivisia.
+#Kaikki korreloivat keskenÃ¤Ã¤n ja korrelaatiot ovat positiivisia.
 #.2
 summary(regvesi)
 #T-arvo pieni
@@ -60,14 +60,14 @@ abline(regasunto, col = "red")
 #####
 #T.4
 #.1
-#Ensimmäisessä tarkastellaan hinnan logaritmia ottaen huomioon vuoden ja alueen. Toisessa otetaan näiden lisäksi huomioon vielä vuoden ja alueen välinen suhde.
+#EnsimmÃ¤isessÃ¤ tarkastellaan hinnan logaritmia ottaen huomioon vuoden ja alueen. Toisessa otetaan nÃ¤iden lisÃ¤ksi huomioon vielÃ¤ vuoden ja alueen vÃ¤linen suhde.
 #.2
 regasunto2 <- lm(log(data3$acrePrice) ~ data3$year + data3$region)
 regasunto3 <- lm(log(data3$acrePrice) ~ data3$year + data3$region + data3$year:data3$region)
 
-fitted(regasunto3)
+fit <- fitted(regasunto3)
 summary(regasunto2)
-summary(regasunto3)
+summary(fit)
 
 
 plot(data3$year~ data3$region)
@@ -87,16 +87,16 @@ boxplot(data4$salary ~data4$sex)
 boxplot(data4$salary ~data4$rank)
 boxplot(data4$salary ~data4$degree)
 boxplot(data4$salary ~data4$year)
-#Naiset tienaavat miehiä vähemmän, Korkeampi arvoiset tienaavat enemmän,
-#Maistereiden palkat vaihtelevat enemmän, yleisesti palkka kasvaa vuosien myötä
+#Naiset tienaavat miehiÃ¤ vÃ¤hemmÃ¤n, Korkeampi arvoiset tienaavat enemmÃ¤n,
+#Maistereiden palkat vaihtelevat enemmÃ¤n, yleisesti palkka kasvaa vuosien myÃ¶tÃ¤
 
 #.2
 summary(lm(data4$salary ~ data4$sex))
-#H0: Naiset tienaavat yleensä vähemmän kuin miehet
+#H0: Naiset tienaavat yleensÃ¤ vÃ¤hemmÃ¤n kuin miehet
 #.3
 summary(lm(formula = salary ~., data = data4))
-#Suuri P-arvo, eli voidaan sanoa että se että on nainen tarkoittaa huonompaa palkkaa
+#Suuri P-arvo, eli voidaan sanoa ettÃ¤ se ettÃ¤ on nainen tarkoittaa huonompaa palkkaa
 #.4
 vika <- lm(formula = salary ~., data = data4)
 summary(update(vika, ~. -rank ))
-#huomataan että Rankin ollessa poissa huomioista, ei enään se että on nainen vaikuta niin paljoa palkkaan
+#huomataan ettÃ¤ Rankin ollessa poissa huomioista, ei enÃ¤Ã¤n se ettÃ¤ on nainen vaikuta niin paljoa palkkaan
