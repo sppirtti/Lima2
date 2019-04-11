@@ -60,13 +60,22 @@ abline(regasunto, col = "red")
 #####
 #T.4
 #.1
-
 #Ensimmäisessä tarkastellaan hinnan logaritmia ottaen huomioon vuoden ja alueen. Toisessa otetaan näiden lisäksi huomioon vielä vuoden ja alueen välinen suhde.
 #.2
 regasunto2 <- lm(log(data3$acrePrice) ~ data3$year + data3$region)
 regasunto3 <- lm(log(data3$acrePrice) ~ data3$year + data3$region + data3$year:data3$region)
+
+fitted(regasunto3)
 summary(regasunto2)
 summary(regasunto3)
+
+
+plot(data3$year~ data3$region)
+
+##turhia
+effects::allEffects(regasunto2)
+plot.new()
+plot(effect(log(data3$acrePrice) ~ data3$year + data3$region))
 
 #####
 #T.5
